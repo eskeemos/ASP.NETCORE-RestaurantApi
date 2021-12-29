@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "H3UpdqH3tmO4vyVPo5mdO2cGK7v/DU938SV9kbuzjJN+JtVXde31UQtvMag0jsKyIUZYUfZU9/HGQnAPN9hNsw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\krzys\\Postman\\Desktop\\RestaurantApi\\RestaurantApi\\RestaurantApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\krzys\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}
