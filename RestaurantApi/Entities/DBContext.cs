@@ -21,7 +21,6 @@ namespace RestaurantApi.Entities
 
             modelBuilder.Entity<Address>()
                 .Property(x => x.City).IsRequired().HasMaxLength(50);
-
             modelBuilder.Entity<Address>()
                 .Property(x => x.Street).IsRequired().HasMaxLength(50);
         }

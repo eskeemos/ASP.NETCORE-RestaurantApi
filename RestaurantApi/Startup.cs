@@ -28,9 +28,9 @@ namespace RestaurantApi
         {
 
             services.AddControllers();
-            services.AddTransient<IWeatherForecastService, WeatherForecastService>();
             services.AddDbContext<DBContext>();
             services.AddScoped<RestaurantSeeder>();
+            services.AddAutoMapper(this.GetType().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
