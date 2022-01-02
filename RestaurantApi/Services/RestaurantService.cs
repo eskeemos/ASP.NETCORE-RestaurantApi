@@ -13,6 +13,7 @@ namespace RestaurantApi.Services
         IEnumerable<RestaurantDto> GetAll();
         int Create(CreateRestaurantDto dto);
         bool Delete(int id);
+        bool Update(int id, UpdateRestaurantDto dto);
     }
 
     public class RestaurantService : IRestaurantService
@@ -60,13 +61,27 @@ namespace RestaurantApi.Services
         public bool Delete(int id)
         {
             var restaurant = context.Restaurants
-                .Include(x => x.Address)
-                .Include(x => x.Dishes)
                 .FirstOrDefault(x => x.Id == id);
 
             if (restaurant is null) return false;
 
             context.Restaurants.Remove(restaurant);
+            context.SaveChanges();
+
+            return true;
+        }
+
+        public bool Update(int id, UpdateRestaurantDto dto)
+        {
+            var restaurant = context.Restaurants
+                .FirstOrDefault(x => x.Id == id);
+
+            if (restaurant is null) return false;
+
+            restaurant.Name = dto.Name;
+            restaurant.Description = dto.Description;
+            restaurant.HasDelivery = dto.HasDelivery;
+
             context.SaveChanges();
 
             return true;
