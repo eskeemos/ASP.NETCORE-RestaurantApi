@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RestaurantApi.Entities;
 using RestaurantApi.Models;
 using System.Collections.Generic;
@@ -16,15 +18,17 @@ namespace RestaurantApi.Services
         bool Update(int id, UpdateRestaurantDto dto);
     }
 
-    public class RestaurantService : IRestaurantService
+    public class RestaurantService : Controller, IRestaurantService
     {
         private readonly DBContext context;
         private readonly IMapper mapper;
+        private readonly ILogger<RestaurantService> logger;
 
-        public RestaurantService(DBContext context, IMapper mapper)
+        public RestaurantService(DBContext context, IMapper mapper, ILogger<RestaurantService> logger)
         {
             this.context = context;
             this.mapper = mapper;
+            this.logger = logger;
         }
 
         public RestaurantDto GetSingle(int id)
@@ -60,6 +64,7 @@ namespace RestaurantApi.Services
 
         public bool Delete(int id)
         {
+            logger.LogError($"Restaurant with id : {id} DELETE action invoked");
             var restaurant = context.Restaurants
                 .FirstOrDefault(x => x.Id == id);
 
