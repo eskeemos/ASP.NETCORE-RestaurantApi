@@ -59,3 +59,8 @@ C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\nlog
 C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\NLog.dll
 C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\NLog.Extensions.Logging.dll
 C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\NLog.Web.AspNetCore.dll
+C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\obj\Debug\net5.0\RestaurantApi.MvcApplicationPartsAssemblyInfo.cs
