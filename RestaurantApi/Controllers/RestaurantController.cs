@@ -6,6 +6,7 @@ using System.Collections.Generic;
 namespace RestaurantApi.Controllers
 {
     [Route("api/restaurant")]
+    [ApiController]
     public class RestaurantController : ControllerBase
     {
         private readonly IRestaurantService restaurantService;
@@ -22,18 +23,12 @@ namespace RestaurantApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<RestaurantDto> GetSingle([FromRoute] int id)
         {
-            var result = restaurantService.GetSingle(id);
-
-            if (result is null) return NotFound();
-
-            return Ok(result);
+            return Ok(restaurantService.GetSingle(id));
         }
 
         [HttpPost]
         public ActionResult CreateRestaurant([FromBody] CreateRestaurantDto dto)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             var id = restaurantService.Create(dto);
 
             return Created($"/api/restaurant/{id}", null);
@@ -42,19 +37,17 @@ namespace RestaurantApi.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
-            bool isDeleted = restaurantService.Delete(id);
-            if (isDeleted) return NoContent();
-            return NotFound();
+            restaurantService.Delete(id);
+
+            return NoContent();
         }
 
         [HttpPut("{id}")]
         public ActionResult Update([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
         {
-            if (ModelState.IsValid) return BadRequest(ModelState);
+            restaurantService.Update(id, dto);
 
-            bool isUpdated = restaurantService.Update(id, dto);
-            if (isUpdated) return Ok();
-            return NotFound();
+            return Ok();
         }
     }
 }
