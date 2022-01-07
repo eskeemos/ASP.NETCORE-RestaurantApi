@@ -2,12 +2,12 @@
 
 namespace RestaurantApi.Models
 {
-    public class UpdateRestaurantDto
+    public class CreateDishModel
     {
-        [Required][MaxLength(25)]
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool HasDelivery { get; set; }
-
+        public decimal Price { get; set; }
+        public int RestaurantId { get; set; }
     }
 }

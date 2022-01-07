@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantApi.Models
 {
-    public class DishDto
+    public class DishModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -12,11 +12,11 @@ namespace RestaurantApi.Services
 {
     public interface IRestaurantService
     {
-        RestaurantDto GetSingle(int id);
-        IEnumerable<RestaurantDto> GetAll();
-        int Create(CreateRestaurantDto dto);
+        RestaurantModel GetSingle(int id);
+        IEnumerable<RestaurantModel> GetAll();
+        int Create(CreateRestaurantModel dto);
         void Delete(int id);
-        void Update(int id, UpdateRestaurantDto dto);
+        void Update(int id, UpdateRestaurantModel dto);
     }
 
     public class RestaurantService : Controller, IRestaurantService
@@ -32,7 +32,7 @@ namespace RestaurantApi.Services
             this.logger = logger;
         }
 
-        public RestaurantDto GetSingle(int id)
+        public RestaurantModel GetSingle(int id)
         {
             var restaurant = context.Restaurants
                 .Include(x => x.Address)
@@ -41,20 +41,20 @@ namespace RestaurantApi.Services
 
             if (restaurant is null) throw new NotFoundException("Restaurant not found");
 
-            return mapper.Map<RestaurantDto>(restaurant);
+            return mapper.Map<RestaurantModel>(restaurant);
         }
 
-        public IEnumerable<RestaurantDto> GetAll()
+        public IEnumerable<RestaurantModel> GetAll()
         {
             var restaurants = context.Restaurants
                 .Include(x => x.Address)
                 .Include(x => x.Dishes)
                 .ToList();
 
-            return mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
+            return mapper.Map<IEnumerable<RestaurantModel>>(restaurants);
         }
 
-        public int Create(CreateRestaurantDto dto)
+        public int Create(CreateRestaurantModel dto)
         {
             var restaurant = mapper.Map<Restaurant>(dto);
             context.Restaurants.Add(restaurant);
@@ -76,7 +76,7 @@ namespace RestaurantApi.Services
             context.SaveChanges();
         }
 
-        public void Update(int id, UpdateRestaurantDto dto)
+        public void Update(int id, UpdateRestaurantModel dto)
         {
             var restaurant = context.Restaurants
                 .FirstOrDefault(x => x.Id == id);
