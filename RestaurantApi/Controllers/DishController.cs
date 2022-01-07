@@ -26,5 +26,17 @@ namespace RestaurantApi.Controllers
 
             return Created($"api/{restaurantId}/dish/{dishId}", null);
         }
+
+        [HttpGet]
+        public ActionResult<List<DishModel>> GetAll([FromRoute] int restaurantId)
+        {
+            return Ok(dishService.GetAll(restaurantId));
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<DishModel> GetSingle([FromRoute] int restaurantId, [FromRoute] int id)
+        {
+            return Ok(dishService.GetSingle(restaurantId, id));
+        }
     }
 }
