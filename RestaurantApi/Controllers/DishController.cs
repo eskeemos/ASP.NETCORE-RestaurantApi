@@ -38,5 +38,12 @@ namespace RestaurantApi.Controllers
         {
             return Ok(dishService.GetSingle(restaurantId, id));
         }
+
+        [HttpDelete]
+        public ActionResult Delete([FromRoute] int restaurantId, int id)
+        {
+            dishService.Remove(restaurantId, id);
+            return NoContent();
+        }
     }
 }
