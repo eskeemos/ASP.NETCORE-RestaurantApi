@@ -10,7 +10,7 @@ namespace RestaurantApi.Services
 {
     public interface IAccountService
     {
-        void CreateUser(createUserModel model);
+        void CreateUser(CreateUserModel model);
     }
     public class AccountService : IAccountService
     {
@@ -22,7 +22,7 @@ namespace RestaurantApi.Services
             this.context = context;
             this.passwordHasher = passwordHasher;
         }
-        public void CreateUser(createUserModel model)
+        public void CreateUser(CreateUserModel model)
         {
             var newUser = new User()
             {

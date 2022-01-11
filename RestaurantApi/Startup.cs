@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -6,7 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RestaurantApi.Entities;
 using RestaurantApi.Middleware;
+using RestaurantApi.Models;
 using RestaurantApi.Services;
+using RestaurantApi.Validators;
 
 namespace RestaurantApi
 {
@@ -23,7 +27,7 @@ namespace RestaurantApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation();
             services.AddDbContext<DBContext>();
             services.AddScoped<RestaurantSeeder>();
             services.AddAutoMapper(this.GetType().Assembly);
@@ -31,6 +35,7 @@ namespace RestaurantApi
             services.AddScoped<IDishService, DishService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.AddScoped<IValidator<CreateUserModel>, CreateUserValidator>();
             services.AddScoped<ErrorHandle>();
             services.AddScoped<RequestTime>();
             services.AddSwaggerGen();

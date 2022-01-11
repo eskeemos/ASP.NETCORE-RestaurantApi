@@ -15,7 +15,7 @@ namespace RestaurantApi.Controllers
             this.accountService = accountService;
         }
         [HttpPost("register")]
-        public ActionResult CreateUser([FromBody] createUserModel model)
+        public ActionResult CreateUser([FromBody] CreateUserModel model)
         {
             accountService.CreateUser(model);
 

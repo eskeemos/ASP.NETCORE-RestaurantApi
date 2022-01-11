@@ -64,3 +64,6 @@ C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\Swas
 C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\obj\Debug\net5.0\RestaurantApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+C:\Users\krzys\Postman\Desktop\RestaurantApi\RestaurantApi\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
