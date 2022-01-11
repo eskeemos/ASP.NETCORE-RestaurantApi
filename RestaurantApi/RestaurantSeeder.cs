@@ -17,7 +17,14 @@ namespace RestaurantApi
         {
             if(context.Database.CanConnect())
             {
-                if(!context.Restaurants.Any())
+                if (!context.Roles.Any())
+                {
+                    var roles = GetRoles();
+                    context.Roles.AddRange(roles);
+                    context.SaveChanges();
+                }
+
+                if (!context.Restaurants.Any())
                 {
                     var restaurants = GetRestaurants();
                     context.Restaurants.AddRange(restaurants);
@@ -25,6 +32,28 @@ namespace RestaurantApi
                 }
             }
         }
+
+        private IEnumerable<Role> GetRoles()
+        {
+            var roles = new List<Role>()
+            { 
+                new Role()
+                {
+                    Name = "User"
+                },
+                new Role()
+                {
+                    Name = "Manager"
+                },
+                new Role()
+                {
+                    Name = "Admin"
+                }
+            };
+
+            return roles;
+        }
+
         public IEnumerable<Restaurant> GetRestaurants()
         {
             var restaurants = new List<Restaurant>()
