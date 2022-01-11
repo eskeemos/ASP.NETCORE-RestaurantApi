@@ -57,6 +57,7 @@ namespace RestaurantApi.Services
         public int Create(CreateRestaurantModel dto)
         {
             var restaurant = mapper.Map<Restaurant>(dto);
+
             context.Restaurants.Add(restaurant);
             context.SaveChanges();
 
