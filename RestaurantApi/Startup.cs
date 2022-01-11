@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using RestaurantApi.Entities;
 using RestaurantApi.Middleware;
 using RestaurantApi.Models;
 using RestaurantApi.Services;
 using RestaurantApi.Validators;
+using System.Text;
 
 namespace RestaurantApi
 {
@@ -26,7 +28,25 @@ namespace RestaurantApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var auth = new Authentication();
+            Configuration.GetSection("Authentication").Bind(auth);
 
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = "Bearer";
+                x.DefaultScheme = "Barear";
+                x.DefaultChallengeScheme = "Barear";
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = auth.JwtIssuer,
+                    ValidAudience = auth.JwtIssuer,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(auth.JwtKey))
+                };
+            });
             services.AddControllers().AddFluentValidation();
             services.AddDbContext<DBContext>();
             services.AddScoped<RestaurantSeeder>();
@@ -53,6 +73,7 @@ namespace RestaurantApi
 
             app.UseMiddleware<ErrorHandle>();
             app.UseMiddleware<RequestTime>();
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 
