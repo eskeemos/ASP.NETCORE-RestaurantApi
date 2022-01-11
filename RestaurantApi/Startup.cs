@@ -28,6 +28,7 @@ namespace RestaurantApi
             services.AddAutoMapper(this.GetType().Assembly);
             services.AddScoped<IRestaurantService, RestaurantService>();
             services.AddScoped<IDishService, DishService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<ErrorHandle>();
             services.AddScoped<RequestTime>();
             services.AddSwaggerGen();
