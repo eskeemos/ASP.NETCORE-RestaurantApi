@@ -21,5 +21,13 @@ namespace RestaurantApi.Controllers
 
             return Ok();
         }
+
+        [HttpPost("login")]
+        public ActionResult Login([FromBody] LoginModel model)
+        {
+            string token = accountService.GenereateToken(model);
+
+            return Ok(token);
+        }
     }
 }
